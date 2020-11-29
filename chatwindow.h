@@ -20,20 +20,31 @@ class ChatWindow : public QWidget, private Ui::ChatWindow
         ChatWindow();
 
     private slots:
+        // Some Button managment
         void on_boutonConnexion_clicked();
         void on_boutonEnvoyer_clicked();
         void on_message_returnPressed();
+
+        // Call when server write data on the socket
         void donneesRecues();
+
+        // Slot when connected or deconnected from the server
         void connecte();
         void deconnecte();
-        void erreurSocket(QAbstractSocket::SocketError erreur);
 
+        // Error message
+        void errorSocket(QAbstractSocket::SocketError erreur);
+
+        // Send pseudo and public key to server
         void ForwardPseudoAndPK();
 
+        // Get the public key of someone on the server
         void TryConnectionTo();
 
+        // Slot to manage send button
         void activatedSafeSend(QString);
 
+        // Send crypted message to
         void SendCrypted();
 
         void changePubKey();
@@ -43,10 +54,10 @@ class ChatWindow : public QWidget, private Ui::ChatWindow
 
 
     private:
-        QTcpSocket *socket; // Représente le serveur
+        QTcpSocket *socket;
         quint16 tailleMessage;
 
-        QMap<QString, QString> mapPseudoToPubK;
+        QMap<QString, QString> mapPseudoToPubK; // map to store pseudo and PubKey
         std::pair<bool, QString> isWaitingForPK;
 
         QString PubKey;

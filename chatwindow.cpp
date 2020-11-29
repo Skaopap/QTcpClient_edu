@@ -34,7 +34,6 @@ ChatWindow::ChatWindow()
     connect(socket, SIGNAL(error(QAbstractSocket::SocketError)),    this, SLOT(erreurSocket(QAbstractSocket::SocketError)));
 }
 
-// Tentative de connexion au serveur
 void ChatWindow::on_boutonConnexion_clicked()
 {
     // On annonce sur la fenêtre qu'on est en train de se connecter
@@ -45,7 +44,6 @@ void ChatWindow::on_boutonConnexion_clicked()
     socket->connectToHost(serveurIP->text(), serveurPort->value()); // On se connecte au serveur demandé
 }
 
-// Envoi d'un message au serveur
 void ChatWindow::on_boutonEnvoyer_clicked()
 {
     QByteArray paquet;
@@ -65,19 +63,14 @@ void ChatWindow::on_boutonEnvoyer_clicked()
     message->setFocus(); // set cursor inside
 }
 
-// Appuyer sur la touche Entrée a le même effet que cliquer sur le bouton "Envoyer"
 void ChatWindow::on_message_returnPressed()
 {
     on_boutonEnvoyer_clicked();
 }
 
-// On a reçu un paquet (ou un sous-paquet)
 void ChatWindow::donneesRecues()
 {
-    /* Même principe que lorsque le serveur reçoit un paquet :
-    On essaie de récupérer la taille du message
-    Une fois qu'on l'a, on attend d'avoir reçu le message entier (en se basant sur la taille annoncée tailleMessage)
-    */
+    // Read the message
     QDataStream in(socket);
 
     if (tailleMessage == 0)
@@ -114,9 +107,13 @@ void ChatWindow::donneesRecues()
 
         isWaitingForPK.first = false;
     }
-    else if (messageRecu.indexOf("CRYPTED:") == 0 )
+    else if (messageRecu.indexOf("CrYpTEd:") == 0 )
     {
         QString msgDecrypt = rsa::rsa_pri_decrypt_base64 (messageRecu.mid(8), PrivKey);
+        if(msgDecrypt == "")
+        {
+            msgDecrypt = "<em> Error : Message decryption failed. </em>";
+        }
         tePrivate->append(msgDecrypt);
     }
     else
@@ -129,13 +126,13 @@ void ChatWindow::donneesRecues()
     tailleMessage = 0;
 }
 
-// Ce slot est appelé lorsque la connexion au serveur a réussi
 void ChatWindow::connecte()
 {
     listeMessages->append(tr("<em>Connexion ok !</em>"));
     tabWidget->setEnabled(true);
     message->setEnabled(true);
     boutonConnexion->setEnabled(true);
+    pbSendPseudo->setEnabled(true);
 }
 
 void ChatWindow::deconnecte()
@@ -145,9 +142,11 @@ void ChatWindow::deconnecte()
     pbSend->setEnabled(false);
     pbSendSecured->setEnabled(false);
     tabWidget->setEnabled(false);
+    pbSendPseudo->setEnabled(false);
 }
 
-void ChatWindow::erreurSocket(QAbstractSocket::SocketError erreur)
+
+void ChatWindow::errorSocket(QAbstractSocket::SocketError erreur)
 {
     switch(erreur) // display error
     {
@@ -173,7 +172,7 @@ void ChatWindow::ForwardPseudoAndPK()
     QDataStream out(&paquet, QIODevice::WriteOnly);
 
     // On prépare le paquet à envoyer
-    QString messageAEnvoyer =tr("P:") + pseudo->text() + tr(" PubKey") + PubKey;
+    QString messageAEnvoyer =tr("P:") + pseudo->text() + tr(" PuBKeY") + PubKey;
 
     out << (quint16) 0;
     out << messageAEnvoyer;
@@ -197,7 +196,7 @@ void ChatWindow::TryConnectionTo()
     QByteArray paquet;
     QDataStream out(&paquet, QIODevice::WriteOnly);
 
-    QString messageAEnvoyer =tr("ConnectTo") + lePseudo->text();
+    QString messageAEnvoyer =tr("CoNNeCTTo") + lePseudo->text();
     isWaitingForPK = std::make_pair(true, lePseudo->text());
 
     out << (quint16) 0;
@@ -228,7 +227,7 @@ void ChatWindow::SendCrypted()
     tePrivate->append(msg);
     msg = rsa::rsa_pub_encrypt_base64(msg, mapPseudoToPubK[cbClientsSecured->currentText()]);
 
-    QString messageAEnvoyer =tr("Pseudo:") + cbClientsSecured->currentText() + " MSG:" + msg ;
+    QString messageAEnvoyer =tr("PsEUdO:") + cbClientsSecured->currentText() + " MSG:" + msg ;
 
     out << (quint16) 0;
     out << messageAEnvoyer;
@@ -243,11 +242,28 @@ void ChatWindow::SendCrypted()
 void ChatWindow::changePubKey()
 {
     PubKey = tePubKey->toPlainText();
+    tePubKey->clear();
     tePubKey->append("<em>PubKey Changed !</em>");
+
+    // send it again to the server
+   /* QByteArray paquet;
+    QDataStream out(&paquet, QIODevice::WriteOnly);
+
+    // On prépare le paquet à envoyer
+    QString messageAEnvoyer =tr("PpUbChAnGeD:") + pseudo->text() + tr(" PubKey") + PubKey;
+
+    out << (quint16) 0;
+    out << messageAEnvoyer;
+    out.device()->seek(0);
+    out << (quint16) (paquet.size() - sizeof(quint16));
+
+    socket->write(paquet); // send paquet*/
+
 }
 
 void ChatWindow::changePrivKey()
 {
     PrivKey = tePrivKey->toPlainText();
+    tePrivKey->clear();
     tePrivKey->append("<em>PrivKey Changed !</em>");
 }

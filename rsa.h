@@ -14,6 +14,7 @@
 class rsa
 {
 public:
+
 /**
  * @brief createRsaKey generates a key pair
  * @param strPubKey public key
@@ -21,20 +22,7 @@ public:
  * @return status
 */
 static bool createRsaKey (QString& strPubKey, QString& strPriKey);
-/**
- * @brief rsa_pri_encrypt private key encryption
- * @param strClearData Clear text
- * @param strPriKey private key
- * @return Encrypted data (base64 format)
-*/
-static QString rsa_pri_encrypt_base64 (const QString& strClearData, const QString& strPriKey);
-/**
- * @brief rsa_pub_decrypt public key decryption
- * @param strDecrypt data to be decrypted (base64 format)
- * @param strPubKey public key
- * @return Clear text
-*/
-static QString rsa_pub_decrypt_base64 (const QString& strDecryptData, const QString& strPubKey);
+
 /**
  * @brief rsa_pub_encrypt public key encryption
  * @param strClearData Clear text
@@ -42,6 +30,7 @@ static QString rsa_pub_decrypt_base64 (const QString& strDecryptData, const QStr
  * @return Encrypted data (base64 format)
 */
 static QString rsa_pub_encrypt_base64 (const QString& strClearData, const QString& strPubKey);
+
 /**
  * @brief rsa_pri_decrypt private key decryption
  * @param strDecrypt data to be decrypted (base64 format)
@@ -49,7 +38,9 @@ static QString rsa_pub_encrypt_base64 (const QString& strClearData, const QStrin
  * @return Clear text
 */
 static QString rsa_pri_decrypt_base64 (const QString& strDecryptData, const QString& strPriKey);
+
  /**<test */
 static void test ();
+
 };
 #endif // RSA_H

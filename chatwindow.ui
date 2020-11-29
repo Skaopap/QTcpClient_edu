@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>ZeroChat - Client</string>
+   <string>SafeChat - Client</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -119,7 +119,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="currentIndex">
       <number>0</number>
@@ -162,6 +162,9 @@
          </item>
          <item>
           <widget class="QPushButton" name="pbSendPseudo">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="maximumSize">
             <size>
              <width>16777215</width>
