@@ -11,31 +11,36 @@
 #define BEGIN_PUBLIC_KEY        "BEGIN PUBLIC KEY"
 #define KEY_LENGTH 1024 // key length
 
+//!  Rsa Class.
+/*!
+  Use OpenSSL and Qt to generate easily public and private key,
+  And also provide an easy way to encrypt or decrypt message in a QString.
+*/
 class rsa
 {
 public:
 
-/**
- * @brief createRsaKey generates a key pair
- * @param strPubKey public key
- * @param strPriKey private key
- * @return status
+/*!
+ * \brief createRsaKey generates a key pair
+ * \param strPubKey public key
+ * \param strPriKey private key
+ * \return status
 */
 static bool createRsaKey (QString& strPubKey, QString& strPriKey);
 
-/**
- * @brief rsa_pub_encrypt public key encryption
- * @param strClearData Clear text
- * @param strPubKey private key
- * @return Encrypted data (base64 format)
+/*!
+ * \brief rsa_pub_encrypt public key encryption
+ * \param strClearData Clear text
+ * \param strPubKey private key
+ * \return Encrypted data (base64 format)
 */
 static QString rsa_pub_encrypt_base64 (const QString& strClearData, const QString& strPubKey);
 
-/**
- * @brief rsa_pri_decrypt private key decryption
- * @param strDecrypt data to be decrypted (base64 format)
- * @param strPriKey private key
- * @return Clear text
+/*!
+ * \brief rsa_pri_decrypt private key decryption
+ * \param strDecrypt data to be decrypted (base64 format)
+ * \param strPriKey private key
+ * \return Clear text
 */
 static QString rsa_pri_decrypt_base64 (const QString& strDecryptData, const QString& strPriKey);
 

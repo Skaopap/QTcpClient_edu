@@ -28,7 +28,7 @@ ChatWindow::ChatWindow()
 
     // Socket connection
     socket = new QTcpSocket(this);
-    connect(socket, SIGNAL(readyRead()),                            this, SLOT(donneesRecues()));
+    connect(socket, SIGNAL(readyRead()),                            this, SLOT(DataReceived()));
     connect(socket, SIGNAL(connected()),                            this, SLOT(connecte()));
     connect(socket, SIGNAL(disconnected()),                         this, SLOT(deconnecte()));
     connect(socket, SIGNAL(error(QAbstractSocket::SocketError)),    this, SLOT(erreurSocket(QAbstractSocket::SocketError)));
@@ -36,12 +36,12 @@ ChatWindow::ChatWindow()
 
 void ChatWindow::on_boutonConnexion_clicked()
 {
-    // On annonce sur la fenêtre qu'on est en train de se connecter
+    // Display message
     listeMessages->append(tr("<em>Tentative de connexion en cours...</em>"));
     boutonConnexion->setEnabled(false);
 
-    socket->abort(); // On désactive les connexions précédentes s'il y en a
-    socket->connectToHost(serveurIP->text(), serveurPort->value()); // On se connecte au serveur demandé
+    socket->abort(); // disable another request if there are some
+    socket->connectToHost(serveurIP->text(), serveurPort->value()); // Connect to the server
 }
 
 void ChatWindow::on_boutonEnvoyer_clicked()
@@ -68,7 +68,7 @@ void ChatWindow::on_message_returnPressed()
     on_boutonEnvoyer_clicked();
 }
 
-void ChatWindow::donneesRecues()
+void ChatWindow::DataReceived()
 {
     // Read the message
     QDataStream in(socket);
@@ -85,7 +85,7 @@ void ChatWindow::donneesRecues()
         return;
 
 
-    // Si on arrive jusqu'à cette ligne, on peut récupérer le message entier
+    // if we are here, the whole message is here
     QString messageRecu;
     in >> messageRecu;
 
@@ -107,6 +107,7 @@ void ChatWindow::donneesRecues()
 
         isWaitingForPK.first = false;
     }
+    // recieved crypted message, decrypt it and display it
     else if (messageRecu.indexOf("CrYpTEd:") == 0 )
     {
         QString msgDecrypt = rsa::rsa_pri_decrypt_base64 (messageRecu.mid(8), PrivKey);
@@ -116,6 +117,7 @@ void ChatWindow::donneesRecues()
         }
         tePrivate->append(msgDecrypt);
     }
+    // general chat, clear message
     else
     {
         // Display msg on chat
