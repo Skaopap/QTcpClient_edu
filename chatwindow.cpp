@@ -37,7 +37,7 @@ ChatWindow::ChatWindow()
 void ChatWindow::on_boutonConnexion_clicked()
 {
     // Display message
-    listeMessages->append(tr("<em>Tentative de connexion en cours...</em>"));
+    listeMessages->append(tr("<em>Trying to connect...</em>"));
     boutonConnexion->setEnabled(false);
 
     socket->abort(); // disable another request if there are some
