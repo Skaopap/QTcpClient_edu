@@ -132,6 +132,12 @@ void ChatWindow::DataReceived()
     // general chat, clear message
     else
     {
+        if(messageRecu.lastIndexOf("DeCo:") == 0)
+        {
+            RemoveDeconnectedPseudo(messageRecu.mid(messageRecu.indexOf("connected :") + 11));
+            messageRecu = messageRecu.mid(5);
+        }
+
         // Display msg on chat
         listeMessages->append(messageRecu);
     }
@@ -159,6 +165,19 @@ void ChatWindow::deconnecte()
     pbSendPseudo->setEnabled(false);
 }
 
+void ChatWindow::RemoveDeconnectedPseudo(QString pseudoList)
+{
+    // remove pseudo from CbClientsSecured
+    for(int index = 0 ; index < cbClientsSecured->count() ; ++index)
+    {
+        if(pseudoList.indexOf(cbClientsSecured->itemText(index)) == -1)
+        {
+            cbClientsSecured->removeItem(index); // remove the pseudo from the deconnected person
+            mapPseudoToPubK.remove(cbClientsSecured->itemText(index));// remove from map, useless now
+            return;
+        }
+    }
+}
 
 void ChatWindow::errorSocket(QAbstractSocket::SocketError erreur)
 {

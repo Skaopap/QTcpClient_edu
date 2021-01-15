@@ -61,6 +61,11 @@ void connecte();
 void deconnecte();
 
 /*!
+ * \brief Called when a client is disconnected from the server, clear useless data
+*/
+void RemoveDeconnectedPseudo(QString pseudoList);
+
+/*!
  * \brief Get and dispplay the error
  * \param erreur socket error
 */
