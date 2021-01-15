@@ -10,9 +10,11 @@ CONFIG += c++11
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
 
-INCLUDEPATH += D:/soft/OpenSSL-Win64/include
+#INCLUDEPATH += D:/soft/OpenSSL-Win64/include
+INCLUDEPATH += OpenSSL/include
 
-LIBS += -LD:/soft/OpenSSL-Win64/lib -llibcrypto -llibssl
+#LIBS += -LD:/soft/OpenSSL-Win64/lib -llibcrypto -llibssl
+LIBS += -L"../SafeChat/OpenSSL/lib" -llibcrypto -llibssl
 
 # You can also make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.

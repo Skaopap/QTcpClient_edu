@@ -24,6 +24,8 @@ ChatWindow::ChatWindow()
     connect(pbSend,             SIGNAL(clicked()), this, SLOT(on_boutonEnvoyer_clicked()));
     connect(pbTryConnection,    SIGNAL(clicked()), this, SLOT(TryConnectionTo()));
 
+    connect(leSafeMsg,          SIGNAL(returnPressed()), this, SLOT(SendCrypted()));
+
     connect(cbClientsSecured,   SIGNAL(currentTextChanged(QString)), this , SLOT(activatedSafeSend(QString)));
 
     // Socket connection
@@ -31,17 +33,27 @@ ChatWindow::ChatWindow()
     connect(socket, SIGNAL(readyRead()),                            this, SLOT(DataReceived()));
     connect(socket, SIGNAL(connected()),                            this, SLOT(connecte()));
     connect(socket, SIGNAL(disconnected()),                         this, SLOT(deconnecte()));
-    connect(socket, SIGNAL(error(QAbstractSocket::SocketError)),    this, SLOT(erreurSocket(QAbstractSocket::SocketError)));
+    connect(socket, SIGNAL(error(QAbstractSocket::SocketError)),    this, SLOT(errorSocket(QAbstractSocket::SocketError)));
 }
 
 void ChatWindow::on_boutonConnexion_clicked()
 {
+    // Switch to General section
+    tabWidget->setCurrentIndex(0);
+
     // Display message
     listeMessages->append(tr("<em>Trying to connect...</em>"));
     boutonConnexion->setEnabled(false);
 
+    QCoreApplication::processEvents(); // let previous command happen
+
     socket->abort(); // disable another request if there are some
     socket->connectToHost(serveurIP->text(), serveurPort->value()); // Connect to the server
+
+    if(!socket->waitForConnected(5000))
+    {
+        errorSocket(socket->error());
+    }
 }
 
 void ChatWindow::on_boutonEnvoyer_clicked()
