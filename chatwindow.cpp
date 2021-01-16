@@ -50,10 +50,10 @@ void ChatWindow::on_boutonConnexion_clicked()
     socket->abort(); // disable another request if there are some
     socket->connectToHost(serveurIP->text(), serveurPort->value()); // Connect to the server
 
-    if(!socket->waitForConnected(5000))
+    /*if(!socket->waitForConnected(5000))
     {
         errorSocket(socket->error());
-    }
+    }*/
 }
 
 void ChatWindow::on_boutonEnvoyer_clicked()
@@ -153,6 +153,7 @@ void ChatWindow::connecte()
     message->setEnabled(true);
     boutonConnexion->setEnabled(true);
     pbSendPseudo->setEnabled(true);
+    pseudo->setEnabled(true);
 }
 
 void ChatWindow::deconnecte()
@@ -161,7 +162,7 @@ void ChatWindow::deconnecte()
     pbTryConnection->setEnabled(false);
     pbSend->setEnabled(false);
     pbSendSecured->setEnabled(false);
-    tabWidget->setEnabled(false);
+    //tabWidget->setEnabled(false);
     pbSendPseudo->setEnabled(false);
 }
 
