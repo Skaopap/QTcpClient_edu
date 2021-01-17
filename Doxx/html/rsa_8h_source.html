@@ -78,26 +78,27 @@ $(function() {
 <div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="rsa_8h.html#a3f64248699063f4fbb0699474e515c8a">   11</a></span>&#160;<span class="preprocessor">#define BEGIN_PUBLIC_KEY        &quot;BEGIN PUBLIC KEY&quot;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="rsa_8h.html#a8586e0a5858b47c9bae382f8ace2e274">   12</a></span>&#160;<span class="preprocessor">#define KEY_LENGTH 1024 // key length</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="rsa_8h.html#a5145aca5cb4a65b79b24d162d6fd72eb">   13</a></span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classrsa.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="classrsa.html">rsa</a></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="classrsa.html#a0574ee8c86b709693b2ea0e9ea501df9">createRsaKey</a> (QString&amp; strPubKey, QString&amp; strPriKey);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">static</span> QString <a class="code" href="classrsa.html#a01b7f6e08f86024f10b933980cf2485e">rsa_pub_encrypt_base64</a> (<span class="keyword">const</span> QString&amp; strClearData, <span class="keyword">const</span> QString&amp; strPubKey);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">static</span> QString <a class="code" href="classrsa.html#a7f046646400cdabeed404f3da3ed6aae">rsa_pri_decrypt_base64</a> (<span class="keyword">const</span> QString&amp; strDecryptData, <span class="keyword">const</span> QString&amp; strPriKey);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classrsa.html#af88593fca1c3696c42657d2fbcd807ff">test</a> ();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;};</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#endif // RSA_H</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classrsa.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="classrsa.html">rsa</a></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="classrsa.html#a0574ee8c86b709693b2ea0e9ea501df9">createRsaKey</a> (QString&amp; strPubKey, QString&amp; strPriKey);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">static</span> QString <a class="code" href="classrsa.html#a01b7f6e08f86024f10b933980cf2485e">rsa_pub_encrypt_base64</a> (<span class="keyword">const</span> QString&amp; strClearData, <span class="keyword">const</span> QString&amp; strPubKey);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">static</span> QString <a class="code" href="classrsa.html#a7f046646400cdabeed404f3da3ed6aae">rsa_pri_decrypt_base64</a> (<span class="keyword">const</span> QString&amp; strDecryptData, <span class="keyword">const</span> QString&amp; strPriKey);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classrsa.html#af88593fca1c3696c42657d2fbcd807ff">test</a> ();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;};</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#endif // RSA_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassrsa_html_a01b7f6e08f86024f10b933980cf2485e"><div class="ttname"><a href="classrsa.html#a01b7f6e08f86024f10b933980cf2485e">rsa::rsa_pub_encrypt_base64</a></div><div class="ttdeci">static QString rsa_pub_encrypt_base64(const QString &amp;strClearData, const QString &amp;strPubKey)</div><div class="ttdoc">rsa_pub_encrypt public key encryption</div><div class="ttdef"><b>Definition:</b> rsa.cpp:44</div></div>
 <div class="ttc" id="aclassrsa_html_a7f046646400cdabeed404f3da3ed6aae"><div class="ttname"><a href="classrsa.html#a7f046646400cdabeed404f3da3ed6aae">rsa::rsa_pri_decrypt_base64</a></div><div class="ttdeci">static QString rsa_pri_decrypt_base64(const QString &amp;strDecryptData, const QString &amp;strPriKey)</div><div class="ttdoc">rsa_pri_decrypt private key decryption</div><div class="ttdef"><b>Definition:</b> rsa.cpp:93</div></div>
 <div class="ttc" id="aclassrsa_html_a0574ee8c86b709693b2ea0e9ea501df9"><div class="ttname"><a href="classrsa.html#a0574ee8c86b709693b2ea0e9ea501df9">rsa::createRsaKey</a></div><div class="ttdeci">static bool createRsaKey(QString &amp;strPubKey, QString &amp;strPriKey)</div><div class="ttdoc">createRsaKey generates a key pair</div><div class="ttdef"><b>Definition:</b> rsa.cpp:8</div></div>
 <div class="ttc" id="aclassrsa_html_af88593fca1c3696c42657d2fbcd807ff"><div class="ttname"><a href="classrsa.html#af88593fca1c3696c42657d2fbcd807ff">rsa::test</a></div><div class="ttdeci">static void test()</div><div class="ttdef"><b>Definition:</b> rsa.cpp:132</div></div>
-<div class="ttc" id="aclassrsa_html"><div class="ttname"><a href="classrsa.html">rsa</a></div><div class="ttdef"><b>Definition:</b> rsa.h:15</div></div>
+<div class="ttc" id="aclassrsa_html"><div class="ttname"><a href="classrsa.html">rsa</a></div><div class="ttdoc">Rsa Class.</div><div class="ttdef"><b>Definition:</b> rsa.h:20</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

@@ -71,13 +71,16 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Chat ui class.  
+ <a href="class_chat_window.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="chatwindow_8h_source.html">chatwindow.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ChatWindow:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_chat_window__inherit__graph.png" border="0" usemap="#_chat_window_inherit__map" alt="Inheritance graph"/></div>
 <map name="_chat_window_inherit__map" id="_chat_window_inherit__map">
-<area shape="rect" title=" " alt="" coords="53,80,148,107"/>
+<area shape="rect" title="Chat ui class." alt="" coords="53,80,148,107"/>
 <area shape="rect" title=" " alt="" coords="5,5,79,32"/>
 <area shape="rect" title=" " alt="" coords="103,5,218,32"/>
 </map>
@@ -87,7 +90,7 @@ Collaboration diagram for ChatWindow:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_chat_window__coll__graph.png" border="0" usemap="#_chat_window_coll__map" alt="Collaboration graph"/></div>
 <map name="_chat_window_coll__map" id="_chat_window_coll__map">
-<area shape="rect" title=" " alt="" coords="53,80,148,107"/>
+<area shape="rect" title="Chat ui class." alt="" coords="53,80,148,107"/>
 <area shape="rect" title=" " alt="" coords="5,5,79,32"/>
 <area shape="rect" title=" " alt="" coords="103,5,218,32"/>
 </map>
@@ -119,6 +122,9 @@ Private Slots</h2></td></tr>
 <tr class="memitem:ac977da9588ec9b18de3d5fc8674a50ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chat_window.html#ac977da9588ec9b18de3d5fc8674a50ef">deconnecte</a> ()</td></tr>
 <tr class="memdesc:ac977da9588ec9b18de3d5fc8674a50ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when the client is disconnected to the server.  <a href="class_chat_window.html#ac977da9588ec9b18de3d5fc8674a50ef">More...</a><br /></td></tr>
 <tr class="separator:ac977da9588ec9b18de3d5fc8674a50ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34f291119e8738ffba182642de35a798"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chat_window.html#a34f291119e8738ffba182642de35a798">RemoveDeconnectedPseudo</a> (QString pseudoList)</td></tr>
+<tr class="memdesc:a34f291119e8738ffba182642de35a798"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called when a client is disconnected from the server, clear useless data.  <a href="class_chat_window.html#a34f291119e8738ffba182642de35a798">More...</a><br /></td></tr>
+<tr class="separator:a34f291119e8738ffba182642de35a798"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ba083db00674437c97739ae7d24d49b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chat_window.html#a3ba083db00674437c97739ae7d24d49b">errorSocket</a> (QAbstractSocket::SocketError erreur)</td></tr>
 <tr class="memdesc:a3ba083db00674437c97739ae7d24d49b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get and dispplay the error.  <a href="class_chat_window.html#a3ba083db00674437c97739ae7d24d49b">More...</a><br /></td></tr>
 <tr class="separator:a3ba083db00674437c97739ae7d24d49b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -162,7 +168,10 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a92099aed602acdce2b138b801cffda21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Private Key.  <a href="class_chat_window.html#a92099aed602acdce2b138b801cffda21">More...</a><br /></td></tr>
 <tr class="separator:a92099aed602acdce2b138b801cffda21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Chat ui class. </p>
+<p>Manage all ui interaction and data sending to the server. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aaec154a727645e9567c7be013e4713aa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaec154a727645e9567c7be013e4713aa">&#9670;&nbsp;</a></span>ChatWindow()</h2>
 
@@ -491,6 +500,34 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Send event button general, second way. </p>
+
+</div>
+</div>
+<a id="a34f291119e8738ffba182642de35a798"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34f291119e8738ffba182642de35a798">&#9670;&nbsp;</a></span>RemoveDeconnectedPseudo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ChatWindow::RemoveDeconnectedPseudo </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>pseudoList</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Called when a client is disconnected from the server, clear useless data. </p>
 
 </div>
 </div>
